@@ -1,12 +1,23 @@
-require('dotenv').config();
-const express = require('express');
+const express = require("express");
+const dotenv = require("dotenv");
+const path = require("path");
+const clientRoutes = require("./routes/client.routes");
+
+// Cargar variables de entorno
+dotenv.config();
+
+// Crear la aplicación Express
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('🚀 Servidor funcionando en Railway!');
-});
+// Configuración de EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
-app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
+// Usar las rutas definidas
+app.use(clientRoutes);
+
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });

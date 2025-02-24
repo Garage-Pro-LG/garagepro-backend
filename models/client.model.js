@@ -28,11 +28,11 @@ async function createClientTable() {
     );
   }
   
-  async function getClients() {
+  async function getClientsFromDB() {
     return db.execute('SELECT * FROM clients');
   }
   
-  async function getClientById(id_client) {
+  async function getClientByIdDB(id_client) {
     return db.execute('SELECT * FROM clients WHERE id_client = ?', [id_client]);
   }
   
@@ -47,5 +47,5 @@ async function createClientTable() {
     return db.execute('DELETE FROM clients WHERE id_client = ?', [id_client]);
   }
   
-  module.exports = { createClientTable, addClient, getClients, getClientById, updateClient, deleteClient };
+  module.exports = { createClientTable, addClient, getClientsFromDB, getClientByIdDB, updateClient, deleteClient };
   
